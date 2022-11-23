@@ -94,4 +94,4 @@ Class Duck extends Bird implements flyingBird and swimmingBird
         }
     }
     ```
-- #### O - A Class extending a different class
+![](dependency-inversion-principle-3-728.webp)
