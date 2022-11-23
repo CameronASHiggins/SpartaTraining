@@ -7,3 +7,5 @@ A repository for any coding that may appear during my Sparta training
 #### - Enums
 #### - Summer & stringSummer
 #### - OOP Principles and examples
+#### - SOLID Principles
+#### - Interfaces & Abstract Classes/Methods
