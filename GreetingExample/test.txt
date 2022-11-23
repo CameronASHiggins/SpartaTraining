@@ -1,0 +1,1 @@
+Ok, so now I'm going to try to pull this to my local system using Bash
