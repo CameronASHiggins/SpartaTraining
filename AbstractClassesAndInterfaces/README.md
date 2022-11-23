@@ -24,3 +24,4 @@ You can think of implementing an interface is like assigning behaviour to an obj
 #### e.g. 
 - Pikachu can implement attack but cant extend attack (Because Pikachu can attack but isn't an attack)
 - Pikachu can extend Pokémon but cannot implement Pokémon (Because Pikachu is a Pokémon but cant Pokémon)
+
