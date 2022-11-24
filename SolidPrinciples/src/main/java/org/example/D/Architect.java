@@ -9,7 +9,7 @@ public class Architect implements Worker{
 
     @Override
     public void doesJob() {
-
+        System.out.println("This architect does their job.");
     }
 
     @Override
