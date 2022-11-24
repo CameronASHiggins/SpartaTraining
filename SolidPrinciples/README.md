@@ -52,7 +52,7 @@ e.g. Class Bird, Interface flyingBird, Interface swimmingBird
 ```java
 Class Penguin extends Bird implements swimmingBird
 Class Robin extends Bird implements flyingBird
-Class Duck extends Bird implements flyingBird and swimmingBird
+Class Duck extends Bird implements flyingBird, swimmingBird
 ```
 ### What's the difference between Class and Interface?
 
