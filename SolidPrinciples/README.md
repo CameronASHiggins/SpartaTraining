@@ -10,18 +10,28 @@
 - **Single Responsibility Principle**
   - "A class should only have one reason to change". Each Java class must perform a single functionality.
 
+
 - **Open-Closed Principle**
   - Software entities (separate classes, modules, functions, etc.) should be open for extension but closed for modification.
+  - For "good" code you shouldn't have to modify existing code in add functionality, instead you should extend functionality with new code.
+    - Extension meaning that a software module can be extended to make it behave in new and different ways.
+    - This is not limited just to the "extend" keyword but also polymorphism to invoke extended behaviours (things like new constructors etc.)
+    - Closed for modification means that source code of a software module should remain unchanged.
+
 
 - **Liskov Substitution Principle**
   - Derived classes must be completely substitutable for their base classes.
+  - There should be no unusable abstract methods inherited from a base class or interface.
 
   - I.e. functions that use references to base classes must be able to use objects of the derived class without knowing it.
 
+
 - **Interface Segregation Principle**
   - No code should be forced to depend on methods it does not use.
+  - If this is the case in a subclass then this means that abstraction is needed.
 
   - I.e. Larger interfaces should be split into smaller ones. We don't want to force class to implement methods they don't need.
+
 
 - **Dependency Inversion Principle**
   - High-level modules should not depend on low-level modules. Both should depend on abstractions.
