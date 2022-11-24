@@ -18,6 +18,7 @@ public class Project {
     }
 
     public void jobDone(){
+        worker.doesJob();
         System.out.println("Job is done by " + worker.getName());
     }
 
