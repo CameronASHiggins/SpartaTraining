@@ -3,12 +3,14 @@ package com.sparta;
 import java.util.Arrays;
 
 public class BubbleSorter {
+
     public BubbleSorter() {}
+
     public int[] sort(int[] inputArray) {   // Takes array of ints as input
         int arrayLen = inputArray.length;    // Creates int with the length of input as its value
         boolean isSorted = false;           // Boolean to know when to stop sorting, updated if a clean pass (no swaps) is made through the array
 
-        while (isSorted == false) { //start pass if not sorted
+        while (!isSorted) { //start pass if not sorted
             isSorted = true; //Assume the list is sorted
             for (int i = 0; i < arrayLen - 1; i++) { //initialise conditions for the pass
                 if (inputArray[i] > inputArray[i + 1]) { //if element is greater than the next element
