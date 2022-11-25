@@ -11,15 +11,15 @@ import java.util.stream.Stream;
 
 class PalindromeCheckerTest {
 
-//    @ParameterizedTest
-//    @DisplayName("Given palindromic strings this test should return true")
-//    @ValueSource(strings = {"race car","radar","Hannah","ABBA!","a1a1a1a"})
-//    void GivenPalindromicStrings_PalindromeCheckerTest_ReturnsTrue(String strings) {
-//        PalindromeChecker palindromeChecker = new PalindromeChecker();
-//        boolean expected = true;
-//        boolean result = (palindromeChecker.check(strings));
-//        Assertions.assertEquals(expected,result);
-//    }
+    @ParameterizedTest
+    @DisplayName("Given palindromic strings this test should return true")
+    @ValueSource(strings = {"race car","radar","Hannah","ABBA!","a1a1a1a"})
+    void GivenPalindromicStrings_PalindromeCheckerTest_ReturnsTrue(String strings) {
+        PalindromeChecker palindromeChecker = new PalindromeChecker();
+        boolean expected = true;
+        boolean result = (palindromeChecker.check(strings));
+        Assertions.assertEquals(expected,result);
+    }
 
     @ParameterizedTest
     @DisplayName("Given string arrays containing a mix of palindromes and non-palindromes should return any palindromes")
