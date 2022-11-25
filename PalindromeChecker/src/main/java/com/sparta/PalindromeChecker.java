@@ -1,7 +1,7 @@
 package com.sparta;
 
 public class PalindromeChecker {
-    public PalindromeChecker(){};
+    public PalindromeChecker(){}
     public boolean check(String inputString) {
         boolean isPalindrome;
         String formattedInput = inputString.toLowerCase().replaceAll("[^a-z0-9]","");
