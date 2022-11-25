@@ -9,3 +9,4 @@ A repository for any coding that may appear during my Sparta training
 #### - OOP Principles and examples
 #### - SOLID Principles
 #### - Interfaces & Abstract Classes/Methods
+#### - Palindrome Checker
