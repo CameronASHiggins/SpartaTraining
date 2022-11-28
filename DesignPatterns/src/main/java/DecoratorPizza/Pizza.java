@@ -1,4 +1,4 @@
-package Decorator;
+package DecoratorPizza;
 
 public interface Pizza {
     public String prepare();
