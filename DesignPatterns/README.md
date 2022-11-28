@@ -34,16 +34,24 @@
 - Facade
 
 ### Factory
+- Creational design pattern that provides an interface for creating objects in a superclass, but allows subclasses to alter the type of objects that will be created.
 
 ### Abstract Factory
+- Creational design pattern that lets you produce families of related objects without specifying their concrete classes.
 
 ### Singleton
+- Creational design pattern (to be used in how we create objects)
+- Lets you ensure that a class has only one instance while providing global access for this instance.
+- Store the instance in a variable and use the variable like a getter method, also protects this instance by stopping the new keyword.
+#### - Key features of singleton
+  - Private Static reference to the object
+  - Private constructor
+  - Static getter with if statement
 
 ### Decorator
 - Sometimes called the wrapper pattern
 
 ### Facade
-
-
+- Structural design patter that provides a simplified library, a framework, or any other complex set of classes.
 
 ![img.png](img.png)

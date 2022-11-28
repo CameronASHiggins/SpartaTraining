@@ -1,4 +1,4 @@
-package Decorator;
+package DecoratorPizza;
 
 public class MushroomDecorator extends PizzaToppingDecorator{
     public MushroomDecorator(Pizza pizza) {

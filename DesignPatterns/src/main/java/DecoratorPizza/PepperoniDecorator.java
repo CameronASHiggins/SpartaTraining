@@ -1,4 +1,4 @@
-package Decorator;
+package DecoratorPizza;
 
 public class PepperoniDecorator extends PizzaToppingDecorator{
 
