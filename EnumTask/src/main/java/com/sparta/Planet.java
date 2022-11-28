@@ -11,11 +11,8 @@ public enum Planet {
     URANUS("Uranus",2867.0f,86.8f);
 
     private final String planetName;
-
     private final Float planetDistanceFromSol;
-
     private final Float planetMass;
-
     private Planet(String planetName, Float planetDistanceFromSol, Float planetMass){
         this.planetName = planetName;
         this.planetDistanceFromSol = planetDistanceFromSol;
