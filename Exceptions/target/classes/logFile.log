@@ -1,0 +1,5 @@
+[ERROR] 2022-11-29 15:08:58.804 [main] Starter - Cannot invoke "String.toUpperCase()" because "name" is null
+java.lang.NullPointerException: Cannot invoke "String.toUpperCase()" because "name" is null
+	at com.sparta.Cat.meow(Cat.java:13) ~[classes/:?]
+	at com.sparta.Starter.start(Starter.java:10) ~[classes/:?]
+	at com.sparta.Main.main(Main.java:10) ~[classes/:?]
