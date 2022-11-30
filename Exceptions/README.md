@@ -27,6 +27,22 @@ Checked exceptions can be seen as issues before runtime time while unchecked exc
 #### Unchecked Exceptions
 - Any exception that extends RuntimeException class (any subclass)
 
+#### Examples of checked and unchecked exceptions
+
+**Unchecked**
+- NullPointerException 
+- ClassCastException 
+- ArithmeticException 
+- DateTimeException
+- ArrayStoreException
+
+**Checked**
+- ClassNotFoundException
+- SocketException
+- SQLException
+- IOException
+- FileNotFoundException
+
 ---
 
 ## Dealing with exceptions
@@ -102,5 +118,10 @@ We use Log4j2, we need the core and the api for this in our pom.xml file.
 ```
 
 Logging is exactly what it says it is, it logs exceptions at different levels.
+
+The log levels in log4j2 follow a hierarchy of severity and is as follows:
+ALL < TRACE < DEBUG < INFO < WARN < ERROR < FATAL and OFF.
+
+Setting the log level of a log file will have it log all errors and exceptions labeled with that level and up.
 
 We use Logger class objects (normally static to the class we want to log about) and use the .log() function to declare the level of an issue of each logged message. 
