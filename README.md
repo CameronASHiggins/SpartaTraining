@@ -10,3 +10,9 @@ A repository for any coding that may appear during my Sparta training
 #### - SOLID Principles
 #### - Interfaces & Abstract Classes/Methods
 #### - Palindrome Checker
+#### - Bubble Sorter
+#### - Exceptions
+#### - Equals and Hashcode
+#### - Binary Tree Examples
+#### - Design Patterns
+#### - Default log4j2 properties file
