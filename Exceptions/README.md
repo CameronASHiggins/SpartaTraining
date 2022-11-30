@@ -46,6 +46,16 @@ try{
 If you don't do anything with the catch statement that's called "hiding the exception" and is awful.
 The minimum is print the exception and terminate code block.
 
+As long as you have a combination of at least one try and at least one of either a catch or finally statement then a try statement is valid.
+So this is valid:
+```java
+try{
+    //some code 
+} finally {
+    // some more code
+}
+```
+
 You can use multiple catch statements but only one catch block will run for the try statement.
 If you get multiple exceptions in the try block the first applicable catch will run and then the rest of the catch blocks will be skipped.
 
