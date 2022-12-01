@@ -3,7 +3,7 @@ package com.sparta;
 import org.apache.logging.log4j.*;
 
 public class Cat {
-    public static Logger logger = LogManager.getLogger(Starter.class);
+    public static Logger logger = LogManager.getLogger();
     public String meow(String name){
 
 //        logger.log(Level.ERROR, "My first log message");
