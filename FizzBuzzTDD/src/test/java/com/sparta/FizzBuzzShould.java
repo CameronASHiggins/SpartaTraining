@@ -23,24 +23,42 @@ class FizzBuzzShould {
         Assertions.assertEquals(expected, FizzBuzz.fizzBuzz(input));
     }
 
+    @Test
+    @DisplayName("Given 3, return \"Fizz\"")
+    public void givenThree_Return_Fizz(){
+        Assertions.assertEquals("Fizz",FizzBuzz.fizzBuzz(3));
+    }
+
     @ParameterizedTest
     @ValueSource(ints = {3,6,9,12,18,21,24,27,33,36,39,42,48})
     @DisplayName("Given a multiple of 3, return \"Fizz\"")
-    public void givenAMultipleOf3_Return_StringOfFizz(int input){
+    public void givenANumberDivisibleByThreeButNotFive_Return_Fizz(int input){
         Assertions.assertEquals("Fizz",FizzBuzz.fizzBuzz(input));
+    }
+
+    @Test
+    @DisplayName("Given 5, return \"Buzz\"")
+    public void givenFive_Return_Buzz(){
+        Assertions.assertEquals("Buzz",FizzBuzz.fizzBuzz(5));
     }
 
     @ParameterizedTest
     @ValueSource(ints = {5,10,20,25,35,40,50})
     @DisplayName("Given a multiple of 5, return \"Buzz\"")
-    public void givenAMultipleOf5_Return_StringOfBuzz(int input){
+    public void givenANumberDivisibleByFiveButNotThree_Return_Buzz(int input){
         Assertions.assertEquals("Buzz",FizzBuzz.fizzBuzz(input));
+    }
+
+    @Test
+    @DisplayName("Given 15, return \"FizzBuzz\"")
+    public void givenFifteen_Return_Buzz(){
+        Assertions.assertEquals("FizzBuzz",FizzBuzz.fizzBuzz(15));
     }
 
     @ParameterizedTest
     @ValueSource(ints = {15,30,45})
     @DisplayName("Given multiples of both 3 & 5, return \"FizzBuzz\"")
-    public void givenMultiplesOf3And5_Return_StringOfFizzBuzz(int input){
+    public void givenANumberDivisibleByFifteen_Return_FizzBuzz(int input){
         Assertions.assertEquals("FizzBuzz",FizzBuzz.fizzBuzz(input));
     }
 }
