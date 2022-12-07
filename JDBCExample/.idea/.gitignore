@@ -1,7 +1,6 @@
 # Default ignored files
 /shelf/
 /workspace.xml
-/target/
 /dbconnect.properties
 # Editor-based HTTP Client requests
 /httpRequests/
