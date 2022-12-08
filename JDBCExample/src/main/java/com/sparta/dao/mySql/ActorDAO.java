@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-public class ActorDAO implements DAO<Actor> {
+public class ActorDAO implements DAO<Actor>, AutoCloseable{
     // going to use a nested-like singleton pattern for out connection
     // we want to re-use this and not have to create a new connection for every method we call
 
@@ -23,7 +23,7 @@ public class ActorDAO implements DAO<Actor> {
     private static PreparedStatement insertActorPS = null;
 
     private static PreparedStatement updateActorPS = null;
-    public static ActorDAO getInstance(){
+    public static ActorDAO getInstance() throws SQLException{
         if(theInstance == null){
             theInstance = new ActorDAO();
         }
@@ -54,7 +54,7 @@ public class ActorDAO implements DAO<Actor> {
         }
         if(insertActorPS == null){
             try {
-                insertActorPS = conn.prepareStatement("INSERT INTO actor VALUES (?,?,?)");
+                insertActorPS = conn.prepareStatement("INSERT INTO actor (actor_id, first_name, last_name) VALUES (?,?,?)");
             }catch (SQLException e){
                 throw new RuntimeException(e);
             }
@@ -68,15 +68,23 @@ public class ActorDAO implements DAO<Actor> {
         }
         return theInstance;
     }
+
+    /**
+     * @param id - The id of the actor you wish to find.
+     *           This code will update the prepared statement, findByIdPS, outlined above
+     *           and create a result set from this statement. It should only be 1 entry long.
+     * @return an Actor object.
+     */
     @Override
     public Actor findById(int id) {
-        Actor result;
+        Actor result = null;
 
         try {
             findByIdPS.setInt(1,id);
             ResultSet rs = findByIdPS.executeQuery();
-            rs.next();
-            result = new Actor(rs.getInt(1), rs.getString(2),rs.getString(3));
+            while(rs.next()) {
+                result = new Actor(rs.getInt(1), rs.getString(2), rs.getString(3));
+            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -85,7 +93,7 @@ public class ActorDAO implements DAO<Actor> {
 
     @Override
     public int insert(Actor newRow) {
-        int result;
+        int result = 0;
         int id = newRow.getId();
         String firstName = newRow.getFirstName();
         String lastName = newRow.getLastName();
@@ -95,8 +103,10 @@ public class ActorDAO implements DAO<Actor> {
             insertActorPS.setString(3,lastName);
 
             result = insertActorPS.executeUpdate();
+        } catch (SQLIntegrityConstraintViolationException e) {
+            System.out.println("You are trying to insert an actor with a duplicate actor_id.\nIf you want to change this actor's details, use the update method");
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
         return result;
     }
@@ -107,7 +117,7 @@ public class ActorDAO implements DAO<Actor> {
             deleteByIdPS.setInt(1,id);
             deleteByIdPS.executeUpdate();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
 
@@ -123,7 +133,7 @@ public class ActorDAO implements DAO<Actor> {
 
             updateActorPS.executeUpdate();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
 
@@ -138,9 +148,14 @@ public class ActorDAO implements DAO<Actor> {
                 actorList.add(new Actor(rs.getInt(1), rs.getString(2), rs.getString(3)));
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
 
         return actorList;
+    }
+
+    @Override
+    public void close() throws SQLException {
+        conn.close();
     }
 }
