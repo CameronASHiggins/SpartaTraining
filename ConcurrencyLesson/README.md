@@ -56,11 +56,17 @@ A thread terminates because of either of the following reasons:
 
 Once in this terminated state the tread should be garbage collected as it is now considered out of scope.
 
-## Liveness
+## Liveness Issues
 
 A concurrent application's ability to execute in a timely manner is known as its liveness.
 
 ## Locks
+
+Locks are used in threads to deny access to resources to other threads while the resource is in use.
+
+### The synchronized Keyword
+When sharing resources between threads the __synchronized__ keyword must be used during method creation. This allows threads to know when the resources they need will be free
+by notifying threads that a lock will be given up soon.
 
 ### The wait() method
 
