@@ -18,7 +18,7 @@ For example:
 
     Stream2 - Stream1.add1toEach
 
-Terminal operation: Required at the end. Returns not a stream.
+Terminal operation: Required at the end. Returns not a stream. Without a terminal operation a stream WILL NOT run
 
 Optional: Object container for another Object, may or may not have something inside it.
     Can contain null, but we can still run methods on the optional.
