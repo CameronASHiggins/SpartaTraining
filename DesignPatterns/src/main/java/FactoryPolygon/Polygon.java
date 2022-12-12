@@ -1,5 +1,8 @@
 package FactoryPolygon;
 
 public interface Polygon {
-    String getType();
+
+    default String getType() {
+        return this.toString();
+    }
 }
