@@ -36,6 +36,8 @@ public class Main extends Bike {
         redCar1.licenseNumber = 1234;
         blueCar1.licenseNumber = 2468;
         pinkCar1.licenseNumber = 1357;
+        redCar1.honkHorn();
+        Car.honkHorn();
 
         System.out.println(redCar1.licenseNumber + " " + blueCar1 + " " + pinkCar1.licenseNumber);
     }

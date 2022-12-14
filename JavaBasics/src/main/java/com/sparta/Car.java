@@ -20,7 +20,7 @@ public class Car {
     String colourOfChassis = "red";
     int licenseNumber;
 
-    public void honkHorn(){
+    public static void honkHorn(){
         System.out.println("Loud horn");
     }
 

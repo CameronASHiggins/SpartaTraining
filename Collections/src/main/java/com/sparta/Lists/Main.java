@@ -1,17 +1,25 @@
 package com.sparta.Lists;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import javax.crypto.spec.PSource;
+import java.util.*;
+import java.util.function.Function;
 
 public class Main {
     public static void main(String[] args) {
-        int[] ints = {1,2,5,1,6,7,3,4,2};
+        HashMap<Integer, String> hm = new HashMap<>();
 
+        hm.put(1, "Data");
+        hm.put(2, "Data");
+        System.out.println(hm.get(1));
+        System.out.println(hm.get(2));
+        //hm.putIfAbsent(3, "More Data");
+        try{
+            //hm.put(3,"Even More Data");
 
-        Arrays.sort(ints);
-        System.out.println(ints[ints.length-1]);
-
+            System.out.println(hm.get(3));
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
+
 }
