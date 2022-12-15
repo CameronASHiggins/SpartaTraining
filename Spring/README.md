@@ -48,6 +48,23 @@ List of some of the different projects:
 In Spring the objects that form the backbone of your application and that are managed by the Spring IoC container are called "beans".
 A bean is an object that is instantiated, assembled and managed by a Spring IoC container.
 
+A bean is just a Java class that conforms to a set of predefined standard.
+
+A bean must satisfy **6** features
+- **Introspections**
+  - Introspection is a process of analysing a Bean to determine its capabilities. This is an essential feature of the Java Beans specification because it allows another application, such as a design tool, to obtain information about a component.
+- **Properties**
+  - A property is a subset of a Bean's state. The values assigned to the properties determine the behaviour and appearance of that component. They are set through a setter method and can be obtained by a getter method.
+- **Customisation**
+  - A customizer can provide a step-by-step guide that the process must follow to use the component in a specific context.
+- **Events**
+  - Beans may interact with the EventObject EventListener model.
+- **Persistence**
+  - Persistence is the ability to save the current state of a Bean, including the values of a Bean's properties and instance variables, to nonvolatile storage and to retrieve them at a later time.
+- **Methods**
+  - A Bean should use accessor methods to encapsulate the properties. A Bean can provide other methods for business logic not related to the access to the properties.
+
+
 They are called beans because Java is named after coffee and coffee is made from beans.
 
 ## Spring Core Technologies
@@ -64,6 +81,11 @@ They are called beans because Java is named after coffee and coffee is made from
 IoC/DI -  It is a process whereby objects define their dependencies (that is, the other objects they work with) only through constructor arguments, arguments to a factory method, or properties that are set on the object instance after it is constructed or returned from a factory method.
 
 This removes the need for a new keyword in our class. The new class dependencies are instantiated in a factory and are injected into our constructors.
+
+## **Objects define their dependencies only through constructors or setters**
+The IoC container "injects" these dependencies when it creates the "bean"
+This is fundamentally the inverse, hence the name, of the bean itself controlling the instantiation or location of its dependencies through direct construction of classes.
+
 
 You can use either or a mix of constructors or setters for dependency inversion.
 
