@@ -10,12 +10,14 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.annotation.ReadOnlyProperty;
+import org.springframework.test.annotation.Commit;
 import org.springframework.test.annotation.Rollback;
 
 import java.util.Optional;
 
 @SpringBootTest
-@Rollback(false)
+@Commit
 @Transactional
 public class SakilaJpaDeleteEntitiesTests {
 
@@ -29,12 +31,17 @@ public class SakilaJpaDeleteEntitiesTests {
     private FilmRepository repoFilm;
 
     @Test
+    @Rollback(true)
     void testActorDeleteActor(){
-        Optional<Actor> resultBeforeDelete = repoActor.findById(210);
-        if(resultBeforeDelete.isEmpty()) Assertions.assertTrue(true);
+        Optional<Actor> resultBeforeDelete = repoActor.findById(222);
+        if(resultBeforeDelete.isEmpty()){
+            System.out.println("Actor not found, no deletion necessary");
+            Assertions.assertTrue(true);
+        }
         else{
-            repoActor.deleteById(210);
-            Optional<Actor> resultAfterDelete = repoActor.findById(210);
+            System.out.println("Actor found, deletion commencing");
+            repoActor.deleteById(222);
+            Optional<Actor> resultAfterDelete = repoActor.findById(222);
             Assertions.assertFalse(resultAfterDelete.isPresent());}
     }
 

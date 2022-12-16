@@ -9,14 +9,14 @@ import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.Rollback;
+import org.springframework.test.annotation.Commit;
 
 import java.time.Instant;
 
 @SpringBootTest
-@Rollback(false)
+@Commit
 @Transactional
-public class SakilaUpdateEntitiesTests {
+public class SakilaJpaUpdateEntitiesTests {
 
     @Autowired
     private LanguageRepository repoLang;

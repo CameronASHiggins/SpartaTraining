@@ -13,14 +13,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.annotation.Rollback;
+import org.springframework.test.annotation.Commit;
 
 import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.Optional;
 
 @SpringBootTest
-@Rollback(false)
+@Commit
 @Transactional
 public class SakilaJpaCreateEntitiesTests {
 
@@ -54,14 +54,14 @@ public class SakilaJpaCreateEntitiesTests {
     void testLanguageCreateLanguage(){
         Language newLanguage = new Language();
         newLanguage.setId((short)0);
-        newLanguage.setName("Welsh");
+        newLanguage.setName("Portuguese");
         newLanguage.setLastUpdate(Instant.now());
         Language result = repoLang.save(newLanguage);
         System.out.println(result);
         Optional<Language> found = repoLang.findById(result.getId());
-        System.out.println(found.get());
         Language foundLang = found.get();
-        Assertions.assertEquals("Welsh",foundLang.getName());
+        System.out.println(found.get());
+        Assertions.assertEquals("Portuguese",foundLang.getName());
     }
 
 
