@@ -11,7 +11,6 @@ import org.springframework.test.annotation.Rollback;
 
 import java.math.BigDecimal;
 import java.time.Instant;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -46,22 +45,6 @@ class SakilaJpaApplicationTests {
         } else {
             Assertions.fail();
         }
-    }
-
-    @Test
-    void testActorCreateActor(){
-        Actor newActor = new Actor();
-        newActor.setId(0);
-        newActor.setFirstName("Cameron");
-        newActor.setLastName("Higgins");
-        newActor.setLastUpdate(Instant.now());
-        System.out.println(newActor);
-        Actor result = repoActor.save(newActor);
-        System.out.println(result);
-        Optional<Actor> found = repoActor.findById(result.getId());
-        System.out.println(found.get());
-        Actor foundActor = found.get();
-        Assertions.assertEquals("Cameron",foundActor.getFirstName());
     }
 
     @Test
@@ -114,49 +97,12 @@ class SakilaJpaApplicationTests {
     }
 
     @Test
-    void testFilmCreateFilm(){
-        Film newFilm = new Film();
-        newFilm.setId(0);
-        newFilm.setTitle("WEATHERING WITH YOU");
-        newFilm.setDescription("High-school boy runs away from his troubled rural home to Tokyo and befriends an orphan girl who can manipulate the weather");
-        newFilm.setReleaseYear(2019);
-        newFilm.setLanguage(repoLang.findById((short)3).get());
-        newFilm.setRentalDuration((short) 7);
-        newFilm.setRentalRate(new BigDecimal("4.99"));
-        newFilm.setLength(114);
-        newFilm.setReplacementCost(new BigDecimal("19.99"));
-        newFilm.setRating("PG-13");
-        newFilm.setSpecialFeatures("Trailers");
-        newFilm.setLastUpdate(Instant.now());
-        System.out.println(newFilm);
-        Film result = repoFilm.save(newFilm);
-        System.out.println(result);
-        Optional<Film> found = repoFilm.findById(result.getId());
-        System.out.println(found.get());
-        Film foundFilm = found.get();
-        Assertions.assertEquals("WEATHERING WITH YOU",foundFilm.getTitle());
-    }
-
-    @Test
     void testFilmFindByLanguage(){
         List<Film> result = repoFilm.findByLanguage(repoLang.findByName("Japanese").get(0));
         for (Film f: result) {
             System.out.println(f.getTitle());
         }
         Assertions.assertTrue(!result.isEmpty());
-    }
-    @Test
-    void testLanguageCreateLanguage(){
-        Language newLanguage = new Language();
-        newLanguage.setId((short)0);
-        newLanguage.setName("Welsh");
-        newLanguage.setLastUpdate(Instant.now());
-        Language result = repoLang.save(newLanguage);
-        System.out.println(result);
-        Optional<Language> found = repoLang.findById(result.getId());
-        System.out.println(found.get());
-        Language foundLang = found.get();
-        Assertions.assertEquals("Welsh",foundLang.getName());
     }
 
     @Test
