@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Commit;
+import org.springframework.util.Assert;
 
 import java.util.List;
 import java.util.Optional;
@@ -82,7 +83,34 @@ class SakilaJpaReadEntitiesTests {
         for (Film f: result) {
             System.out.println(f.getTitle());
         }
-        Assertions.assertTrue(!result.isEmpty());
+        Assertions.assertFalse(result.isEmpty());
+    }
+
+    @Test
+    void testFilmFindByPrefix(){
+        List<Film> result = repoFilm.findByTitleStartingWith("W");
+        for (Film f: result){
+            System.out.println(f.getTitle() + " - " + f.getDescription());
+        }
+        Assertions.assertFalse(result.isEmpty());
+    }
+
+    @Test
+    void testFilmFindByPrefixAndSuffix(){
+        List<Film> result = repoFilm.findByTitleStartingWithAndTitleEndingWith("W","U");
+        for(Film f: result){
+            System.out.println(f.getTitle() + " - " + f.getDescription());
+        }
+        Assertions.assertFalse(result.isEmpty());
+    }
+
+    @Test
+    void testFilmFindLongFilmsJPQL(){
+        List<Film> result = repoFilm.findLongFilmsJPQL(110);
+        for (Film f: result){
+            System.out.println(f.getTitle() + " - " + f.getLength());
+        }
+        Assertions.assertFalse(result.isEmpty());
     }
 
     @Test
