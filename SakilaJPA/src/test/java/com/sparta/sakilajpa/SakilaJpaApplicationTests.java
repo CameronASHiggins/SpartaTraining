@@ -1,10 +1,7 @@
 package com.sparta.sakilajpa;
 
 import com.sparta.sakilajpa.entities.*;
-import com.sparta.sakilajpa.repositories.ActorRepository;
-import com.sparta.sakilajpa.repositories.FilmRepository;
-import com.sparta.sakilajpa.repositories.LanguageRepository;
-import com.sparta.sakilajpa.repositories.StaffRepository;
+import com.sparta.sakilajpa.repositories.*;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -14,6 +11,7 @@ import org.springframework.test.annotation.Rollback;
 
 import java.math.BigDecimal;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -124,9 +122,9 @@ class SakilaJpaApplicationTests {
         newFilm.setReleaseYear(2019);
         newFilm.setLanguage(repoLang.findById((short)3).get());
         newFilm.setRentalDuration((short) 7);
-        newFilm.setRentalRate(new BigDecimal(4.99));
+        newFilm.setRentalRate(new BigDecimal("4.99"));
         newFilm.setLength(114);
-        newFilm.setReplacementCost(new BigDecimal(19.99));
+        newFilm.setReplacementCost(new BigDecimal("19.99"));
         newFilm.setRating("PG-13");
         newFilm.setSpecialFeatures("Trailers");
         newFilm.setLastUpdate(Instant.now());
@@ -146,6 +144,19 @@ class SakilaJpaApplicationTests {
             System.out.println(f.getTitle());
         }
         Assertions.assertTrue(!result.isEmpty());
+    }
+    @Test
+    void testLanguageCreateLanguage(){
+        Language newLanguage = new Language();
+        newLanguage.setId((short)0);
+        newLanguage.setName("Welsh");
+        newLanguage.setLastUpdate(Instant.now());
+        Language result = repoLang.save(newLanguage);
+        System.out.println(result);
+        Optional<Language> found = repoLang.findById(result.getId());
+        System.out.println(found.get());
+        Language foundLang = found.get();
+        Assertions.assertEquals("Welsh",foundLang.getName());
     }
 
     @Test

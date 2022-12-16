@@ -7,16 +7,18 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.annotation.Rollback;
 
 import java.time.Instant;
 import java.util.Optional;
 
 @SpringBootTest
+@Rollback(false)
 @Transactional
 public class SakilaJpaCreateEntitiesTests {
 
     @Autowired
-    private CategoryRepository catergoryRepo;
+    private CategoryRepository categoryRepo;
 
     @Test
     void contextLoads() {
@@ -29,9 +31,9 @@ public class SakilaJpaCreateEntitiesTests {
         newCategory.setName("Anime");
         newCategory.setLastUpdate(Instant.now());
         System.out.println(newCategory);
-        Category result = catergoryRepo.save(newCategory);
+        Category result = categoryRepo.save(newCategory);
         System.out.println(result);
-        Optional<Category> found = catergoryRepo.findById(result.getId());
+        Optional<Category> found = categoryRepo.findById(result.getId());
         System.out.println(found.get());
         Category foundCategory = found.get();
         Assertions.assertEquals("Anime",foundCategory.getName());

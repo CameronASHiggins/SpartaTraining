@@ -44,4 +44,12 @@ public class Language {
         this.lastUpdate = lastUpdate;
     }
 
+    @Override
+    public String toString() {
+        return "Language{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", lastUpdate=" + lastUpdate +
+                '}';
+    }
 }
