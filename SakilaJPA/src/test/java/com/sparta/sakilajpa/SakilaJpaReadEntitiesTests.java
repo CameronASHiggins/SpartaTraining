@@ -9,8 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 
-import java.math.BigDecimal;
-import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,7 +16,7 @@ import java.util.Optional;
 @SpringBootTest
 @Rollback(false)
 @Transactional
-class SakilaJpaApplicationTests {
+class SakilaJpaReadEntitiesTests {
     @Autowired
     private ActorRepository repoActor;
 
@@ -48,16 +46,6 @@ class SakilaJpaApplicationTests {
     }
 
     @Test
-    void testActorDeleteActor(){
-        Optional<Actor> resultBeforeDelete = repoActor.findById(210);
-        if(resultBeforeDelete.isEmpty()) Assertions.assertTrue(true);
-        else{
-        repoActor.deleteById(210);
-        Optional<Actor> resultAfterDelete = repoActor.findById(210);
-        Assertions.assertFalse(resultAfterDelete.isPresent());}
-    }
-
-    @Test
     void testActorFindAll(){
         List<Actor> result = repoActor.findAll();
         for (Actor a: result) {
@@ -72,15 +60,7 @@ class SakilaJpaApplicationTests {
         Assertions.assertTrue(!result.isEmpty());
     }
 
-    @Test
-    void testActorUpdateActor(){
-        Actor newActor = new Actor();
-        newActor.setId(210);
-        newActor.setFirstName("CAMERON");
-        newActor.setLastName("HIGGINS");
-        newActor.setLastUpdate(Instant.now());
-        repoActor.save(newActor);
-    }
+
 
     @Test
     void testFilmFindById(){
