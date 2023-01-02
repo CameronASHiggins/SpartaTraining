@@ -86,3 +86,61 @@ JSON can store these types of values:
 |Null| null|
 
 An alternative to JSON is XML, some people use JSON over its alternatives because JSON is compact.
+
+___
+
+### What is an API?
+
+API stands for Application Programming Interface
+ - A mechanism which allows two computer programs to communication with each other.
+
+### What is REST?
+
+REST stands for Representational State Transfer
+
+It is an architectural style, not a standard and its not an implementation technology. It is more of an approach for developing an API.
+
+If something is RESTful that means it complies with the REST architectural style.
+
+You can call REST from JavaScript code, which can increase functionality of web pages. It can add interactivity and dynamicity to a web page.
+
+You can use REST in mobile apps to get data.
+
+REST can integrate applications together, as there is wide support for HTTP in programming languages.
+There is wide support for development of REST APIs in many languages
+
+### What are the constraints of REST?
+
+- We would expect that the service would have a client server structure.
+- A REST API needs to be stateless.
+- A REST API needs cacheability.
+- We would expect that the system would be layered. (Abstracted and encapsulated)
+- It should provide a uniform interface.
+
+### Typical REST technologies
+
+Message exchange
+ - HTTP
+
+Describing the location actions and target
+ - URIs Uniform Resource Identifier
+ - HTTP methods
+
+Representing the Data
+ - JSON
+ - XML or HTML
+
+Describing the service to someone else
+ - Swagger/OpenAPI
+
+## REST implementation
+
+### REST Endpoints
+
+Example: https://swapi.dev/api/films/1
+
+- https - using HTTPS for security
+- swapi.dev - the site hosting the APIs
+- api - this is the api (other services may be available)
+- films - this is the collection of films (typically a plural)
+- 1 - the id of the film we are interested in
