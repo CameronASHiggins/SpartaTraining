@@ -68,6 +68,8 @@ It is a thread safe version of ArrayList
 
 ## The collections framework
 
+![321151935_1009022593819623_5223149703136384452_n (2).jpg](..%2F..%2FPictures%2F321151935_1009022593819623_5223149703136384452_n%20%282%29.jpg)
+
 the java platform includes a collections framework.
 A collection is an object that represents a group of objects.
 A collections framework is a unified architecture for representing and manipulating collections, enabling collections to be manipulated indepndently of implementation details.
