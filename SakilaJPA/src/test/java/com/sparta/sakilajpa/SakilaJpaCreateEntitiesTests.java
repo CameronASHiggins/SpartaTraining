@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Commit;
+import org.springframework.test.annotation.Rollback;
 
 import java.math.BigDecimal;
 import java.time.Instant;
@@ -50,6 +51,7 @@ public class SakilaJpaCreateEntitiesTests {
         Category foundCategory = found.get();
         Assertions.assertEquals("Anime",foundCategory.getName());
     }
+
     @Test
     void testLanguageCreateLanguage(){
         Language newLanguage = new Language();
@@ -66,6 +68,7 @@ public class SakilaJpaCreateEntitiesTests {
 
 
     @Test
+    @Rollback
     void testActorCreateActor(){
         Actor newActor = new Actor();
         newActor.setId(0);

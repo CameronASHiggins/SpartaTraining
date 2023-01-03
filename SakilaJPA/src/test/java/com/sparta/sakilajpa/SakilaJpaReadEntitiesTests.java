@@ -30,6 +30,8 @@ class SakilaJpaReadEntitiesTests {
     private LanguageRepository repoLang;
     @Test
     void contextLoads() {
+        System.out.println(repoActor.getClass().getName());
+        System.out.println(repoActor.getClass().getPackageName());
     }
 
     @Test

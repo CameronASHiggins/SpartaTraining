@@ -1,6 +1,7 @@
 package com.sparta.sakilajpa;
 
 import com.sparta.sakilajpa.entities.Actor;
+import com.sparta.sakilajpa.entities.Category;
 import com.sparta.sakilajpa.repositories.ActorRepository;
 import com.sparta.sakilajpa.repositories.CategoryRepository;
 import com.sparta.sakilajpa.repositories.FilmRepository;
@@ -14,6 +15,7 @@ import org.springframework.data.annotation.ReadOnlyProperty;
 import org.springframework.test.annotation.Commit;
 import org.springframework.test.annotation.Rollback;
 
+import java.util.List;
 import java.util.Optional;
 
 @SpringBootTest
@@ -43,6 +45,15 @@ public class SakilaJpaDeleteEntitiesTests {
             repoActor.deleteById(222);
             Optional<Actor> resultAfterDelete = repoActor.findById(222);
             Assertions.assertFalse(resultAfterDelete.isPresent());}
+    }
+
+    @Test
+    @Rollback
+    void testCategoryDeleteCategory(){
+        List<Category> resultBeforeDeletion = categoryRepo.findAll();
+        categoryRepo.deleteById((short)1);
+        List resultAfterDeletion = categoryRepo.findAll();
+        Assertions.assertFalse(resultBeforeDeletion.equals(resultAfterDeletion));
     }
 
 }
