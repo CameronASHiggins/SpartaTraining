@@ -34,6 +34,10 @@ HTTP Response Codes:
 |4xx - Client Error| 404 = Not Found|
 |5xx - Server Error| 500 = Internal Server Error|
 
+Headers can also be included in http requests, things like what version of http you're using and also a body.
+
+body can include form data among other things
+
 ___
 
 ### JSON
@@ -116,6 +120,7 @@ There is wide support for development of REST APIs in many languages
 - A REST API needs cacheability.
 - We would expect that the system would be layered. (Abstracted and encapsulated)
 - It should provide a uniform interface.
+- Hypertext as the engine of application state
 
 ### Typical REST technologies
 
