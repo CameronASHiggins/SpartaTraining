@@ -100,38 +100,69 @@ public class SakilaApiController {
         ResponseEntity<String> returnValue = null;
         if (result.isPresent()){
             actorRepo.deleteById(id);
-            returnValue = new ResponseEntity<>("{\"message\":\"Actor: " + id + " deleted successfully\"}",HttpStatus.OK);
+            returnValue = new ResponseEntity<>("{\"message\":\"Actor: " + id + " deleted successfully\"}",HttpStatus.NO_CONTENT);
         } else {
             returnValue = new ResponseEntity<>("{\"message\":\"Actor: " + id + " not found\"}", HttpStatus.NOT_FOUND);
         }
         return returnValue;
     }
 
-    @PutMapping("sakila/actors")
-    public ResponseEntity<String> addNewActor(@RequestParam int id, @RequestParam String firstName, @RequestParam String lastName){
-        Actor newActor = new Actor();
-        newActor.setId(id);
-        newActor.setFirstName(firstName);
-        newActor.setLastName(lastName);
-        newActor.setLastUpdate(Instant.now());
+    @PostMapping("sakila/actors")
+    public ResponseEntity<String> createActor(@RequestBody Actor newActor){
         ResponseEntity returnValue = null;
-        actorRepo.save(newActor);
-        if(actorRepo.findById(id).isPresent()){
-            returnValue = new ResponseEntity<>("{\"message\":\"New actor added successfully\"}", HttpStatus.OK);
+        if (actorRepo.findById(newActor.getId()).isEmpty()){
+            if(newActor.getLastUpdate()==null){
+                newActor.setLastUpdate(Instant.now());
+            }
+            actorRepo.save(newActor);
+            returnValue = new ResponseEntity<>("{\"message\":\"Actor: " + newActor.getFirstName() + " " + newActor.getLastName() + " added successfully\"}",HttpStatus.CREATED);
         } else {
-            returnValue = new ResponseEntity<>("{\"message\":\"Actor addition failed\"}", HttpStatus.EXPECTATION_FAILED);
+            returnValue = new ResponseEntity<>("{\"message\":\"Actor already exists \"}",HttpStatus.FORBIDDEN);
         }
+
         return returnValue;
     }
 
     @PatchMapping("sakila/actors")
-    public ResponseEntity<String> updateActor(@RequestParam int id, @RequestParam String firstName, @RequestParam String lastName){
+    public ResponseEntity<String> updateActor(@RequestBody Actor newState){
+        Actor original = null;
         ResponseEntity returnValue = null;
-        if (actorRepo.updateFirstNameAndLastNameAndLastUpdateById(firstName,lastName,Instant.now(),id) > 0){
-            returnValue = new ResponseEntity<>("{\"message\":\"Actor updated successfully\"}",HttpStatus.OK);
+        Optional<Actor> originalOptional = actorRepo.findById(newState.getId());
+        if (originalOptional.isPresent()){
+            original = originalOptional.get();
+            if (newState.getFirstName()!= null)
+                original.setFirstName(newState.getFirstName());
+            if (newState.getLastName()!= null)
+                original.setLastName(newState.getLastName());
+            original.setLastUpdate(Instant.now());
+            actorRepo.save(original);
+            returnValue = new ResponseEntity<>("{\"message\":\"Actor updated successfully\"}",HttpStatus.ACCEPTED);
         } else{
-                returnValue = new ResponseEntity("{\"message\":\"Update failed\"}",HttpStatus.EXPECTATION_FAILED);
-            }
+            returnValue = new ResponseEntity<>("{\"message\":\"Actor update failed\"}",HttpStatus.NOT_FOUND);
+        }
+
+        return returnValue;
+    }
+
+    @PutMapping("sakila/actors")
+    public ResponseEntity updateActorPut(@RequestBody Actor newState){
+        Actor original = null;
+        ResponseEntity returnValue = null;
+        Optional<Actor> originalOptional = actorRepo.findById(newState.getId());
+        if (originalOptional.isPresent()){
+            original = originalOptional.get();
+            if (newState.getFirstName()!= null)
+                original.setFirstName(newState.getFirstName());
+            if (newState.getLastName()!= null)
+                original.setLastName(newState.getLastName());
+            original.setLastUpdate(Instant.now());
+            actorRepo.save(original);
+            returnValue = new ResponseEntity<>("{\"message\":\"Actor updated successfully\"}",HttpStatus.PARTIAL_CONTENT);
+        } else{
+            newState.setLastUpdate(Instant.now());
+            actorRepo.save(newState);
+            returnValue = new ResponseEntity<>("{\"message\":\"Actor added successfully\"}",HttpStatus.CREATED);
+        }
         return returnValue;
     }
 

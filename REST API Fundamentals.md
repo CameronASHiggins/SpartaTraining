@@ -24,6 +24,18 @@ HTTP Request Methods:
 |PATCH|
 |DELETE|
 
+The differences between PUT PATCH and POST:
+
+These are create and update methods.
+If you are providing anything that is NOT NULL then when you insert you must provide values for every one of those fields
+If you use a post request then you must supply all of the information, then the API will check if the entity exists in the database then there will be a client error IF there is no autoincrement, if there is an autoincrement then the database will always create a new record.
+
+A POST will always create a new row in the database.
+
+A PATCH will fail if the row does not already exist in the database.
+
+A PUT will check first to see if the record already exists then update the fields and save it again, does not create a new record if the record already exists, if it doesnt then it will create a new record
+
 HTTP Response Codes:
 
 | Response Code Meaning | Example |
@@ -33,6 +45,8 @@ HTTP Response Codes:
 |3xx - Redirection| 301 = Moved Permanently|
 |4xx - Client Error| 404 = Not Found|
 |5xx - Server Error| 500 = Internal Server Error|
+
+HTTP Responses contain the response code, headers, and a body.
 
 Headers can also be included in http requests, things like what version of http you're using and also a body.
 
