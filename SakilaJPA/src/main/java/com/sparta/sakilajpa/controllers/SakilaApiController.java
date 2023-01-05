@@ -7,6 +7,8 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.sparta.sakilajpa.entities.Actor;
 import com.sparta.sakilajpa.repositories.ActorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +18,8 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @RestController
 public class SakilaApiController {
@@ -67,32 +71,32 @@ public class SakilaApiController {
 //        return actor;
 //    }
 
-    @GetMapping("sakila/actors/{id}")
-    public ResponseEntity<String> findById(@PathVariable int id){
-        Optional<Actor> result = actorRepo.findById(id);
-        ObjectMapper actorMapper = JsonMapper.builder()
-                .addModule(new JavaTimeModule())
-                .build();
-        ResponseEntity<String> returnValue = null;
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("content-type", "application/json");
-        if(result.isPresent()){
-            Actor actor = result.get();
-            String actorString = null;
-            try {
-                actorString = actorMapper.writeValueAsString(actor);
-            } catch (JsonProcessingException e) {
-                throw new RuntimeException(e);
-            }
-            returnValue = new ResponseEntity<>(actorString, headers, HttpStatus.OK);
-        } else {
-            returnValue = new ResponseEntity<>(
-                    "{\"message\":\"Actor "+id+" not found\"}",
-                    headers,
-                    HttpStatus.NOT_FOUND);
-        }
-        return returnValue;
-    }
+//    @GetMapping("sakila/actors/{id}")
+//    public ResponseEntity<String> findById(@PathVariable int id){
+//        Optional<Actor> result = actorRepo.findById(id);
+//        ObjectMapper actorMapper = JsonMapper.builder()
+//                .addModule(new JavaTimeModule())
+//                .build();
+//        ResponseEntity<String> returnValue = null;
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.add("content-type", "application/json");
+//        if(result.isPresent()){
+//            Actor actor = result.get();
+//            String actorString = null;
+//            try {
+//                actorString = actorMapper.writeValueAsString(actor);
+//            } catch (JsonProcessingException e) {
+//                throw new RuntimeException(e);
+//            }
+//            returnValue = new ResponseEntity<>(actorString, headers, HttpStatus.OK);
+//        } else {
+//            returnValue = new ResponseEntity<>(
+//                    "{\"message\":\"Actor "+id+" not found\"}",
+//                    headers,
+//                    HttpStatus.NOT_FOUND);
+//        }
+//        return returnValue;
+//    }
 
     @DeleteMapping("sakila/actors/{id}")
     public ResponseEntity<String> deleteById(@PathVariable int id){
@@ -178,5 +182,25 @@ public class SakilaApiController {
     public String reportError(Throwable t){
         System.out.println(t);
         return "<h1>Error! You messed up.</h1>";
+    }
+    //Entity Model and WebMvcLinkBuilder
+
+    @GetMapping("sakila/actors/all") //relative url
+    public List<Actor> getAllActors(){
+        List<Actor> actorList=actorRepo.findAll();
+        return actorList;
+    }
+    @GetMapping("sakila/actors/{id}")
+    public EntityModel<Actor> getActorId(@PathVariable int id){
+        Actor actor = actorRepo.findById(id).get();
+        EntityModel<Actor> actorEntityModel= EntityModel.of(actor);
+        WebMvcLinkBuilder selfLink = WebMvcLinkBuilder.linkTo(methodOn(this.getClass()).getActorId(id));
+        WebMvcLinkBuilder allActorLink = WebMvcLinkBuilder.linkTo(methodOn(this.getClass()).getAllActors());
+        WebMvcLinkBuilder deleteLink = WebMvcLinkBuilder.linkTo(methodOn(this.getClass()).deleteById(id));
+        actorEntityModel.add(selfLink.withSelfRel());
+        actorEntityModel.add(allActorLink.withRel("all-actors"));
+        actorEntityModel.add(deleteLink.withRel("delete-actor"));
+
+        return actorEntityModel;
     }
 }
