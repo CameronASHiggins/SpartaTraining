@@ -110,7 +110,7 @@ ___
 ### What is an API?
 
 API stands for Application Programming Interface
- - A mechanism which allows two computer programs to communication with each other.
+ - A mechanism which allows two computer programs to communicate with each other.
 
 ### What is REST?
 
