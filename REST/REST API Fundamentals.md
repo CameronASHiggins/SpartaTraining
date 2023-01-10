@@ -136,6 +136,8 @@ There is wide support for development of REST APIs in many languages
 - It should provide a uniform interface.
 - Hypertext as the engine of application state
 
+![REST.png](REST.png)
+
 ### Typical REST technologies
 
 Message exchange
