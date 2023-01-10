@@ -132,7 +132,7 @@ There is wide support for development of REST APIs in many languages
 - We would expect that the service would have a client server structure.
 - A REST API needs to be stateless.
 - A REST API needs cacheability.
-- We would expect that the system would be layered. (Abstracted and encapsulated)
+- We would expect that the system would be layered. (Abstracted and encapsulated) - Also important because the connection between the client and the server will not be direct, instead it will go through one or more abstractions/layers to be able to interact properly, say through an API or other intermediary.
 - It should provide a uniform interface.
 - Hypertext as the engine of application state
 
